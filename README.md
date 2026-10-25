@@ -1,6 +1,6 @@
 # guodongsubs.com
 
-GuodongSubs 官网 —— 静态版（Hugo + PaperMod），部署在 GitHub Pages，原 Typecho 站（DigitalOcean）的完整迁移。
+GuodongSubs 官网 —— 静态版（Hugo + Stack），部署在 GitHub Pages，原 Typecho 站（DigitalOcean）的完整迁移。
 
 ## 目录结构
 
