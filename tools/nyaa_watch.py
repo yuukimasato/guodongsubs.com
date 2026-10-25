@@ -18,7 +18,6 @@ from pathlib import Path
 RSS_URL = "https://nyaa.si/?page=rss&u=GuodongSubs"
 STATE_FILE = Path("data/nyaa_seen.json")
 POSTS_DIR = Path("content/posts")
-REPO_URL = "https://github.com/YOUR_GITHUB_USER/REPO_NAME"  # rewritten at setup
 
 TRACKERS = [
     ("http", "nyaa.tracker.wf", "7777"),
