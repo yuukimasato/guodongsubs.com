@@ -1,0 +1,35 @@
+name: Nyaa release watcher
+
+on:
+  schedule:
+    - cron: "23 * * * *" # hourly at :23 (offset avoids top-of-hour congestion)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nyaa-watcher
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check Nyaa RSS for new releases
+        run: python tools/nyaa_watch.py
+      - name: Commit and push new posts
+        run: |
+          git config user.name "nyaa-watcher"
+          git config user.email "action@github.com"
+          git add content/posts data/
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "nyaa: auto post new release(s)"
+            git push
+          fi

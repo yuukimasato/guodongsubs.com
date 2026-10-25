@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Redirecting… - GuodongSubs</title>
+<script>
+/* Legacy Typecho URL -> new static URL. Generated during migration. */
+(function () {
+  var PRETTY = {
+    "torrent_guide_ch": "/archives/96/",
+    "torrenting_guide": "/archives/96/",
+    "a-will-eternal": "/archives/118/",
+    "all-saints-street": "/archives/27/",
+    "all-saints-street-jp": "/archives/27/",
+    "and2-girls-ova": "/archives/62/",
+    "beryl-and-sapphire": "/archives/64/",
+    "fog-hill-of-five-elements-chapter-01": "/archives/133/",
+    "fog-hill-of-five-elements-chapter-01-jp": "/archives/133/",
+    "fog-hill-of-five-elements": "/archives/100/",
+    "fox-spirit-matchmaker": "/archives/150/",
+    "non-human": "/archives/32/",
+    "shen-jianxin-s2": "/archives/97/",
+    "suspension-of-main-channel": "/youtube-suspension-notice/",
+    "suspension-of-sub-channel": "/archives/242/",
+    "the-daily-life-of-the-immortal-king": "/archives/17/",
+    "the-legend-of-luo-xiaohei": "/archives/112/",
+    "the-legend-of-luo-xiaohei-jp": "/archives/110/",
+    "the-outcast-s1": "/archives/55/",
+    "the-outcast-s2": "/archives/57/",
+    "the-outcast-s2-ova": "/archives/60/",
+    "the-outcast-s3": "/archives/42/",
+    "the-silent-reader": "/archives/102/"
+  };
+  var path = decodeURIComponent(location.pathname).replace(/\/index\.php/, "");
+  var target = null;
+
+  if (/^\/feed\/?$/.test(path)) {
+    target = "/index.xml";
+  } else if (/^\/author\/\d+\/?$/.test(path)) {
+    target = "/";
+  } else if (/^\/category\/en\/?$/i.test(path)) {
+    target = "/categories/english/";
+  } else if (/^\/category\/jp\/?$/i.test(path)) {
+    target = "/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/";
+  } else if (/^\/archives\/\d+\/?$/.test(path)) {
+    target = path;
+  } else if (/^\/(?:en|jp)\/([a-z0-9_-]+)\.html?$/i.test(path)) {
+    var slug = path.split("/")[2].replace(/\.html?$/, "").toLowerCase();
+    target = PRETTY[slug] || null;
+  } else if (/^\/[a-z0-9_-]+\.html?$/i.test(path)) {
+    var page = path.split("/").pop().replace(/\.html?$/, "").toLowerCase();
+    if (page === "tags-and-archives") target = "/archives/";
+    else target = "/" + page + "/";
+  }
+
+  if (target) {
+    var qs = location.search + location.hash;
+    document.title = "Redirecting…";
+    location.replace(target + qs);
+  }
+})();
+</script>
+</head>
+<body>
+<p>Page not found. If you followed an old link, please use the menu above.</p>
+</body>
+</html>
