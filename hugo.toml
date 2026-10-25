@@ -1,13 +1,134 @@
 baseURL = "https://guodongsubs.com/"
 title = "GuodongSubs"
-theme = "PaperMod"
+theme = "stack"
 defaultContentLanguage = "en"
+hasCJKLanguage = true
+relativeURLs = true
 
 [pagination]
-pagerSize = 10
+pagerSize = 9
 
-[outputs]
-home = ["HTML", "RSS", "JSON"]
+[languages.en]
+label = "English"
+weight = 1
+
+[languages.en.params.sidebar]
+subtitle = "Fan subtitle group · English & 日本語"
+
+[languages.en.params.author]
+name = "GuodongSubs"
+
+[params]
+mainSections = ["posts"]
+rssFullContent = true
+favicon = "/uploads/favicon.ico"
+
+[params.footer]
+since = 2017
+customText = "Fan subtitles by GuodongSubs"
+
+[params.colorScheme]
+toggle = true
+default = "auto"
+
+[params.sidebar]
+compact = false
+
+[params.article]
+toc = false
+readingTime = false
+headingAnchor = false
+
+[params.article.list]
+showTags = true
+
+[params.widgets]
+page = []
+
+[[params.widgets.homepage]]
+type = "search"
+
+[[params.widgets.homepage]]
+type = "archives"
+[params.widgets.homepage.params]
+limit = 12
+path = "archives"
+
+[[params.widgets.homepage]]
+type = "tag-cloud"
+[params.widgets.homepage.params]
+limit = 15
+
+[params.comments]
+enabled = false
+
+[[menus.main]]
+identifier = "cat-en"
+name = "English"
+url = "/categories/english/"
+weight = 10
+[menus.main.params]
+icon = "categories"
+
+[[menus.main]]
+identifier = "cat-jp"
+name = "日本語"
+url = "/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/"
+weight = 20
+[menus.main.params]
+icon = "language"
+
+[[menus.main]]
+identifier = "projects"
+name = "Our Projects"
+url = "/our-projects/"
+weight = 30
+[menus.main.params]
+icon = "infinity"
+
+[[menus.main]]
+identifier = "archives"
+name = "Tags and Archives"
+url = "/archives/"
+weight = 40
+[menus.main.params]
+icon = "archives"
+
+[[menus.main]]
+identifier = "recruitment"
+name = "Recruitment"
+url = "/recruitment/"
+weight = 50
+[menus.main.params]
+icon = "messages"
+
+[[menus.main]]
+identifier = "about"
+name = "About Us"
+url = "/about/"
+weight = 60
+[menus.main.params]
+icon = "user"
+
+[[menus.social]]
+identifier = "nyaa"
+name = "Nyaa"
+url = "https://nyaa.si/user/GuodongSubs"
+weight = 10
+[menus.social.params]
+icon = "link"
+
+[[menus.social]]
+identifier = "rss"
+name = "RSS"
+url = "/index.xml"
+weight = 20
+[menus.social.params]
+icon = "rss"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
 
 [markup]
   [markup.goldmark]
@@ -15,51 +136,3 @@ home = ["HTML", "RSS", "JSON"]
       unsafe = true
   [markup.highlight]
     noClasses = false
-
-[params]
-author = "GuodongSubs"
-defaultTheme = "auto"
-ShowReadingTime = false
-ShowShareButtons = false
-ShowPostNavLinks = true
-ShowBreadCrumbs = false
-ShowCodeCopyButtons = false
-ShowToc = false
-disableAnchoredHeadings = true
-
-[params.assets]
-favicon = "/uploads/favicon.ico"
-
-[menus]
-[[menus.main]]
-  name = "English"
-  url = "/categories/english/"
-  weight = 1
-[[menus.main]]
-  name = "日本語"
-  url = "/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/"
-  weight = 2
-[[menus.main]]
-  name = "Our Projects"
-  url = "/our-projects/"
-  weight = 3
-[[menus.main]]
-  name = "Tags and Archives"
-  url = "/archives/"
-  weight = 4
-[[menus.main]]
-  name = "Recruitment"
-  url = "/recruitment/"
-  weight = 5
-[[menus.main]]
-  name = "About Us"
-  url = "/about/"
-  weight = 6
-
-[taxonomies]
-  category = "categories"
-  tag = "tags"
-
-[privacy]
-  [privacy.youtube]
-    privacyEnhanced = true
