@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: nyaa-watcher
@@ -15,6 +17,8 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
+    outputs:
+      pushed: ${{ steps.commit.outputs.pushed }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -23,13 +27,44 @@ jobs:
       - name: Check Nyaa RSS for new releases
         run: python tools/nyaa_watch.py
       - name: Commit and push new posts
+        id: commit
         run: |
           git config user.name "nyaa-watcher"
           git config user.email "action@github.com"
           git add content/posts data/
           if git diff --cached --quiet; then
             echo "nothing to commit"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "nyaa: auto post new release(s)"
             git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
           fi
+
+  # GITHUB_TOKEN pushes do not trigger the deploy workflow (GitHub recursion
+  # guard), so this workflow builds and deploys by itself when new posts land.
+  deploy:
+    needs: watch
+    if: needs.watch.outputs.pushed == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.168.0"
+          extended: true
+      - name: Build
+        run: hugo --gc --minify
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@v4
