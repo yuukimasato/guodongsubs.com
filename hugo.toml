@@ -127,6 +127,14 @@ weight = 10
 icon = "link"
 
 [[menus.social]]
+identifier = "downloads"
+name = "Download Subtitles · 字幕下载"
+url = "/downloads/"
+weight = 15
+[menus.social.params]
+icon = "download"
+
+[[menus.social]]
 identifier = "rss"
 name = "RSS"
 url = "/index.xml"
