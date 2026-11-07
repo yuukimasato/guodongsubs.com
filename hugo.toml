@@ -87,6 +87,14 @@ weight = 30
 icon = "infinity"
 
 [[menus.main]]
+identifier = "downloads"
+name = "Subtitles"
+url = "/downloads/"
+weight = 35
+[menus.main.params]
+icon = "link"
+
+[[menus.main]]
 identifier = "archives"
 name = "Tags and Archives"
 url = "/archives/"
